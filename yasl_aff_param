@@ -1,0 +1,10 @@
+#!/yasl_linux
+
+(1 == ? exit)   // Exit if no argument
+
+!               // Pop the 1st argument -> program name
+
+#               // Add the count to the stack
+
+// Pop the 1st stack element and repeat the instructions inside the parenthesis
+#("\n" + print)

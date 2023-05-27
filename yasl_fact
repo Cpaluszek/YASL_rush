@@ -1,0 +1,40 @@
+#!/yasl_linux
+
+{
+    1
+    +
+} increment
+
+{
+    1
+    -
+} decrement
+
+{
+    2:increment:2
+    // Multiplication
+    2:=:1
+    "*":1
+    1:eval:1
+
+    2:=:2
+    0:=:2
+    2:== ? (1:print 0 exit)
+    factorial
+} factorial
+
+(2 != ? (exit))
+!
+
+= 0 < ? ("not a positive integer\n" print 1 exit)
+= 0 == ? ("1\n" print 1 exit)
+= 1 == ? ("1\n" print 1 exit)
+= 20 > ? ("overflow\n" print 1 exit)
+
+
+0:eval:0
+1:1 // Result stack
+1:2 // increment stack
+
+
+factorial

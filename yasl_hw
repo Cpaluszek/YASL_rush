@@ -1,0 +1,7 @@
+#!/yasl_linux
+
+// Push str onto the stack
+"Hello word\n" 
+
+// print the 1st stack argument
+print

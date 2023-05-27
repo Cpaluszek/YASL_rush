@@ -1,0 +1,24 @@
+#!/yasl_linux
+
+(3 <= ? exit)   // Exit if 3 or less args
+
+!               // Remove the program name from the stack
+
+0:=:1       // Copy 1st number to stack 1
+!           // Remove from stack 0
+1:eval:1    // Convert to number
+
+0:=:2       // Copy operator to stack 2
+!           // Remove operator from stack 0
+
+0:=:1       // Copy 2nd number to stack 1
+1:eval:1    // Convert to number
+
+// Check for the modulo
+=:2
+"%":2
+2:== ? ("%%":1) : (2:=:1)
+
+// Todo: check for % because %%
+1:eval:1    // Evaluate the operator with the 2 numbers
+1:print
