@@ -1,3 +1,5 @@
+#!/usr/local/bin yasl
+
 for let i = 1; i < len args ; i +=1 {
 	echo args[i]
 }
