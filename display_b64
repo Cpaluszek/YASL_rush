@@ -1,0 +1,59 @@
+#!/yasl
+
+{
+// Check if character is between "A" and "Z" in ascii table
+	1:=:1
+	"A":1
+	1:-:1
+	1:=:1
+	25:1
+	1:>:1
+// Check if character is between "a" and "z" in ascii table
+	1:? (
+		1:!
+		1:=:1
+		"a":1
+		1:-:1
+		26:1
+		1:+:1
+		1:=:1
+	) : (
+// Check if character is between "0" and "10" in ascii table
+		1:=:1
+		0:1
+		1:<:1
+		? (
+			1:!
+			"0":1
+			1:-:1
+			52:1
+			1:+:1
+		)
+	)
+	1:print
+}convert_b64
+
+{
+	read:1
+	1:!
+	1:][:1
+	1:!
+	1:!
+	0:2
+	1:#
+	#(
+		6:2
+		2:<<:2
+		1:=:2
+		2:=:2
+		1:!
+		2:|:2
+	)
+} b64_to_rgb
+
+read:1
+1:!
+1:][:1
+1:!
+1:!
+convert_b64
