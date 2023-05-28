@@ -1,4 +1,4 @@
-#!/yasl
+#!./yasl_linux
 
 !!
 {
@@ -31,6 +31,36 @@
 } decrement
 
 {
+    1
+    +
+} increment
+
+{
+    4:7 "/":7 7:eval:7      // Division by 4
+    "Image received, nb pixels: " print 
+    7:=:7 7:print
+    "\n" print
+} get_pixels_amount
+
+{
+    =
+    *
+} get_pow_2
+
+{
+    8:increment:8
+    8:=:8   8:get_pow_2:8    // Square stack 8
+
+    // Compare in stack 4
+    8:=:4 7:=:4 4:== ? (0:0) : (1:0)
+
+    // Todo: check if the square is above the pixel count
+    8:=:4 7:=:4 4:> ? (0:0)
+
+    8:!:8
+} get_square_amount
+
+{
     9:#:9
     2:9
     9://:9
@@ -46,12 +76,20 @@
 
 {
     read:2
+
+    // Pixel in stack 7
+    2:=:7   get_pixels_amount
+
+    // Get squares in stack_8
+    1:0 // boolean set into stack_0 to find the sqrt
+    0:8 // initial square value
+    =@get_square_amount
+    "Found squares: " print 8:=print "\n" print
+
     2:=:3
     2:!
     2:][:9
     9:#:8
-    //9:!
-    //9:!
     reverse
     8:!:8
 } read_std 
@@ -102,10 +140,15 @@
 
 read_std
 3:=:0
+8:=:7
 @(
 	b64_to_std
 	put_pixel
 	4:3
 	3:-:3
 	3:=:0
+    7:decrement:7
+    7:=:7
+    0:7
+    7: ==?("\n" print 8:=:7)
 )
