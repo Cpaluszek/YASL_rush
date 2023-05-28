@@ -12,17 +12,11 @@
     -
 } decrement
 
-// Check if the separator is a unique char
 0:=:2       // separator stack 2
 !
 0:=:1       // string stack 1
 
-0:3         // bool
-
-// Check if separator len == 1
-2:][:4
-1:4
-4:!= ? ("Separator need to be a unique char\n" print exit)
+0:4         // bool
 
 {
     1:#:1
@@ -39,17 +33,66 @@
 } reverse
 
 {
-    reverse
-    5:!:5 
+    1:3
     3:#:3
-    3:^:3
-    3:!:3
-    3:#:3
-    3:#print
+    3:==? ("\n" print 0 exit)
+} quit_if_empty
 
+{
+    quit_if_empty
+
+    3:=:3
+    2:=:3
+    3:==? (3:!:3 skip_separator)
+} skip_separator
+
+{
+    3:print
+    4:=:3
+    1:3
+    3:==? (4:!:4 0:4)
+} not_equal
+
+{
+    skip_separator
+    4:=:3
+    0:3
+    3:==? (4:!:4 1:4 "\n" print)
+} equal
+
+{
+    quit_if_empty
+
+    3:=:3
+    2:=:3
+    3:!=? not_equal
+
+    quit_if_empty
+
+    3:=:3
+    2:=:3
+    3:==? equal
+    split
 } split
 
+// Check if the string isnt empty
+1:=:1
+"":1
+1:==? (exit)
+
+// Check if the separator is a unique char
+2:=:6
+6:][:6
+1:6
+6:!=? ("Separator must be a unique char\n" print 1 exit)
+
+// Unlink str and reverse it in stack 3
 1:][:1
 1:!:1
 1:#:5
+reverse
+5:!:5
+
+skip_separator
+
 split
